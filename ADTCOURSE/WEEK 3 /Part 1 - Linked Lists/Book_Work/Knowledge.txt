@@ -1,0 +1,7 @@
+---------------------------------------
+| KNOWLEDGE: LINKED LISTS PREPARATION |
+---------------------------------------
+OBJECTIVE: We will be implementing an unordered list ADT: Linked Lists.
+
+1. EXPLAIN WHAT A LIST IS: 
+    - A list is a collection of objects in a specific order and having the same data type.
