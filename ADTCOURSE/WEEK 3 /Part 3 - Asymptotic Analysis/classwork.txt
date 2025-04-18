@@ -10,9 +10,109 @@ Exercise 1:
         2. O(n)
 
 Exercise 2:
-    public T pop() {
-        if (this.isEmpty()) {                                           - n 
-            throw new NoSuchElementException("Stack is empty.");        - 1
-        }                                                               - 
-        return this.items.remove(items.size - 1);                       - 1
-    }
+    a. 
+        public T pop() {
+            if (this.isEmpty()) {                                           - 1 
+                throw new NoSuchElementException("Stack is empty.");        - 1
+            }                                                              
+            return this.items.remove(items.size - 1);                       - n
+        }
+    b. 
+        T(n) = n + 2
+    c.
+        Big-O worst case time-complexity: O(n)
+    d. 
+        The operations involved in removing the first index of the array list would be more simple. The "head" reference variable is already
+        pointed to index 0, and so removing it would only require setting the "head" variable to the next element. This means the function T(n)
+        becomes T(n) = 3n, which means the worst case time complexity of O(n)
+
+Exercise 3:
+    a. 
+        public void add(T item) {
+            Node<T> temp = new Node<T>(item); - 1
+            temp.setNext(this.head); - 1 
+            this.head = temp; - 1 
+        }
+    b.    
+        T(n) = 3
+    c. 
+        O(1)
+
+Exercise 4: 
+    a.  
+        public void enqueue(T item) {       
+            this.items.add(0, item);        - 1
+        }                                    
+    b. 
+        T(n) = 1
+    c. 
+        O(1)
+    d. 
+        It would be O(n), since all subsequent elements would have to shifted rightward.
+
+Exercise 5:
+    a. 
+        1. 
+            public class SequentialSearchExample {
+
+                public static boolean sequentialSearch(int[] list, int item) {
+                    int index = 0;
+                    while (index < list.length) {
+                        if (list[index] == item) {
+                            return true;
+                        }
+                        index = index + 1;
+                    } 
+                    return false;
+                } -> run n times, where n is the list's length
+
+                public static void main(String[] args) {
+                    int[] testList = {1, 2, 32, 8, 17, 19, 42, 13, 0};
+
+                    System.out.println("Search for 3 returns " +
+                        sequentialSearch(testList, 3));
+                    System.out.println("Search for 13 returns " +
+                        sequentialSearch(testList, 13));
+                }
+            }
+
+            + T(n) = n
+            + Worst case time-complexity of this algorithm: O(n)
+        2. 
+            public class BinarySearchExample {
+
+                public static boolean binarySearch(int[] list, int item) {
+                    int first = 0;
+                    int last = list.length - 1;
+                    while (first <= last) {
+                        int midpoint = (first + last) / 2;
+                        if (list[midpoint] == item) {
+                            return true;
+                        } else if (list[midpoint] < item) {
+                            last = midpoint - 1;
+                        } else {
+                            first = midpoint + 1;
+                        }
+                    }
+                    return false;
+                } -> will run n/2 since it divides the list in half to search for the item 
+
+                public static void main(String[] args) {
+                    int[] testList = {0, 1, 2, 8, 13, 17, 19, 32, 42};
+
+                    System.out.println("Binary search for 3 returns " +
+                        binarySearch(testList, 3));
+                    System.out.println("Binary search for 13 returns " +
+                        binarySearch(testList, 13));
+                }
+            }
+
+            + T(n) = n/2
+            + Worst case time-complexity of this algorithm is: O(n) = n
+
+            + If the list isn't already sorted, there would be no change in our analysis
+            , since we are not taking the index of each elements into account.
+            We are only taking into account the value of the elements themselves for comparisons. 
+        
+
+ 

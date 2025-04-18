@@ -24,70 +24,76 @@ public class MazeSquare {
     }
 		
     /**
-     * Insert documentation here!
+     * See if the square has a top wall
+     * @return true if the maze square has a top wall, false if not
      */
     public boolean hasTopWall() {
         return hasTopWall;
     }
 		
     /**
-     * Insert documentation here!
+     * See if the square has a right wall
+     * @return true if the maze square has a right wall, false if not
      */
     public boolean hasRightWall() {
         return hasRightWall;
     }
 		
     /**
-     * Insert documentation here!
+     * Get the row that the maze square is in
+     * @return integer value of row 
      */
     public int getRow() {
         return row;
     }
 		
     /**
-     * Insert documentation here!
+     * Get the column that the maze square is in
+     * @return integer value of column
      */
     public int getColumn() {
         return col;
     }
 
     /**
-     * Insert documentation here!
+     * Set the square to visited
      */
     public void setVisited() {
       visited = true;
     }
 
     /**
-     * Insert documentation here!
+     * Set the square to unvisited
      */
     public void setUnvisited() {
       visited = false;
     }
 
     /**
-     * Insert documentation here!
+     * See if the square has been visited before
+     * @return true if the square has been visited before, false if not
      */
     public boolean getVisited() {
       return visited;
     }
 
     /**
-     * Insert documentation here!
+     * See if the square is part of the solution
+     * @return true if it is, false if not
      */
     public boolean getSolutionPiece() {
       return solutionPiece;
     }
 
     /**
-     * Insert documentation here!
+     * Setting the square's status to a part of the solution, which is a solution piece
      */
     public void setSolutionPiece() {
       solutionPiece = true;
     }
 
     /**
-     * Insert documentation here!
+     * Reset the square's status to not a solution piece
      */
     public void resetSolutionPiece() {
       solutionPiece = false;

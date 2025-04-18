@@ -30,9 +30,9 @@ public class Maze {
     public Maze() {
     } 
     
-        /**
-     * Insert documentation here!
-     * 
+    /**
+     * Load a .txt file and constructing a maze out of the file
+     * @param fileName String value for the path of the file
      */
     public boolean load(String fileName) { 
       File inputFile = new File(fileName);
@@ -76,7 +76,8 @@ public class Maze {
     }  
     
     /**
-     * Insert documentation here!
+     * Printing out the solution of the maze
+     * @param solution boolean value to decide whether to print out the results
      */
     public void print(boolean solution) {
         //We'll print off each row of squares in turn.
@@ -185,7 +186,9 @@ public class Maze {
     }
     
     /**
-     * Insert documentation here!
+     * Get the instance of the maze square object at given coordinates
+     * @param row row of the maze to take the maze square object
+     * @param col col of the maze to take the maze square object
      */
     public MazeSquare getMazeSquare(int row, int col) {
         return squares[row][col];
@@ -234,7 +237,7 @@ public class Maze {
     }
 
     /**
-    * Insert documentation here!
+    * Calculating the steps needed to find the finish square
     */
     public Stack<MazeSquare> getSolution() {
       LinkedStack<MazeSquare> solution = new LinkedStack<MazeSquare>();
@@ -286,7 +289,9 @@ public class Maze {
     
  
     /**
-     * Insert documentation here!
+     * main function to provide user interactibility. Has two modes: --solution and nothing.
+     * --solution returns the solution for the maze
+     * nothing returns the maze itself
      */ 
     public static void main(String[] args) {
       if(args.length == 1) {

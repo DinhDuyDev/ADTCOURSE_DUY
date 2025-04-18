@@ -6,7 +6,7 @@
 public class LinkedStack<T> implements Stack<T> {
 
     /**
-    * Documentation here
+    * Private Node class that only LinkedStack can access. Contains a datafield and a field for the pointer to the next node
     * 
     */
     private class Node {
@@ -94,21 +94,5 @@ public class LinkedStack<T> implements Stack<T> {
      */
     public void clear() {
         bottomNode.next = null;
-    }
-
-    public static void main(String[] args) {
-        LinkedStack<String> stack = new LinkedStack<>();
-        stack.push("Hello there!");
-        stack.push("How's your day?");
-        stack.push("Are you okay?");
-        System.out.println(stack.peek());
-        System.out.println(stack.size);
-        System.out.println(stack.pop());
-        System.out.println(stack.pop());
-        System.out.println(stack.pop());
-        System.out.println(stack.pop());
-        System.out.println(stack.pop());
-        System.out.println(stack.pop());
-        System.out.println(stack.pop());
     }
 }
