@@ -1,0 +1,61 @@
+Question 1: 
+a. 
+    public String get(int position) {
+        if(position<0){ - 1
+            throw new IndexOutOfBoundsException(); - 1 
+        } else if(position<numItems) { - 1
+            return array[position]; - 1
+        } else {
+            throw new IndexOutOfBoundsException(); - 1
+        }
+    }
+b. 
+    T(n) = 5;
+c. 
+    O(1)
+d. 
+    It is lower, since retrieving an item from a linked list requires iteration through the list
+
+
+Question 2:
+a. 
+    public void add(String newItem) {
+        if(numItems == capacity) { - 1 
+            String[] oldArray = array; - 1 
+            capacity = capacity * 2; - 1
+            array = new String[capacity]; - 1
+            for(int i = 0; i<numItems; i++){ 
+                array[i] = oldArray[i]; - n
+            }
+        }
+        array[numItems] = newItem; - 1
+        numItems++; - 1
+    }
+
+b.
+    T(n) = n + 6
+c. 
+    O(n)
+d. 
+    The big O time complexity will become O(1).
+
+Question 3:
+a. 
+    public void add(int index, String newItem) {
+        //This method isn't implemented.
+        //throw new UnsupportedOperationException();
+        if (index < 0) {
+            throw new IndexOutOfBoundsException(); - 1 
+        } else if (index >= capacity) {
+            throw new IndexOutOfBoundsException(); - 1
+        } else {
+            array[index] = newItem; - 1
+        }
+    }
+b. 
+    T(n) = 3
+c. 
+    O(n) = 1
+d. 
+    This has a lower time complexity bound, since adding to a specific position in a linked list requires 
+    traversal through the linked list, which calls for an iteration.
