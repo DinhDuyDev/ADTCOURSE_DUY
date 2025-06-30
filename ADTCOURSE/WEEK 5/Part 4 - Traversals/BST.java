@@ -17,15 +17,8 @@ public class BST {
         return readHelper(root, key);
     }
 
-    public String remove(int key) {
-        ArrayList<BSTNode> arr = new ArrayList<>();
-        String returnVal;
-        returnVal= removeHelper(root, key, arr);
-        while (!arr.isEmpty()) {
-            BSTNode last = arr.removeLast();
-            add(last.key(), last.value());
-        }
-        return returnVal;
+    public BSTNode remove(int key) {
+        return removeHelper(root, key);
     }
 
     public BSTNode addHelper(BSTNode currRoot, BSTNode addedNode) {
@@ -53,42 +46,40 @@ public class BST {
         }
     }
 
-    public String removeHelper(BSTNode currNode, int key, ArrayList<BSTNode> arr) {
-        if (currNode != null) {
-            if (root.key() == key) {
-                BSTNode rootNode = root;
-                findAllDescendants(rootNode, arr);
-                root = null;
-                return rootNode.value();
-            }
-            else if (currNode.key() > key) {
-                if (currNode.left().key() == key) {
-                    BSTNode left = currNode.left();
-                    findAllDescendants(left, arr);
-                    currNode.setLeft(null);
-                    return left.value();
-                } else {
-                    return removeHelper(currNode.left(), key, arr);
-                }
+    public BSTNode removeHelper(BSTNode currNode, int key) {
+        if (currNode == null) {
+            return currNode;
+        } 
+        if (currNode.key() > key) {
+            currNode.setLeft(removeHelper(currNode.left(), key));
+        } else if (currNode.key() < key) {
+            currNode.setRight(removeHelper(currNode.right(), key));
+        } else {
+            if (currNode.left() == null) {
+                return currNode.right();
+            } else if (currNode.right() == null) {
+                return currNode.left();
             } else {
-                if (currNode.right().key() == key) {
-                    BSTNode right = currNode.right();
-                    findAllDescendants(right, arr);
-                    currNode.setRight(null);
-                    return right.value();
-                } else {
-                    return removeHelper(currNode.right(), key, arr);
-                }
+                BSTNode temp = getMax(currNode.left());
+                currNode.setValue(temp.value());
+                currNode.setKey(temp.key());
+                currNode.setLeft(deleteMax(currNode.left()));
             }
         }
-        return "";
+        return currNode;
     }
 
-    public void findAllDescendants(BSTNode node, ArrayList<BSTNode> arr) {
-        if (node != null) {
-            findAllDescendants(node.left(), arr);
-            findAllDescendants(node.right(), arr);
-        }
+    private BSTNode getMax(BSTNode rt) {
+        if (rt.right() == null) {
+            return rt;
+        } 
+        return getMax(rt.right());
+    }
+
+    private BSTNode deleteMax(BSTNode rt) {
+        if (rt.right() == null) return rt.left();
+        rt.setRight(getMax(rt.right()));
+        return rt;
     }
 
     public void display() {
@@ -179,23 +170,19 @@ public class BST {
 
     public static void main(String[] args) {
         BST tree = new BST();
-        tree.add(100, "A");
-        tree.add(80, "B");
-        tree.add(90, "S");
-        tree.add(70, "X");
-        tree.add(65, "E");
-        tree.add(75, "M");
-        tree.add(200, "W");
-        tree.add(190, "T");
-        tree.add(180, "P");
-        tree.add(195, "N");
-        tree.add(210, "C");
-        tree.add(205, "H");
+        tree.add(37, "A");
+        tree.add(24, "B");
+        tree.add(7, "S");
+        tree.add(32, "X");
+        tree.add(2, "E");
+        tree.add(42, "M");
+        tree.add(42, "W");
+        tree.add(40, "T");
+        tree.add(120, "P");
         tree.display();
-        tree.printPreOrderTraversal();
-        tree.printInOrderTraversal();
-        tree.printPostOrderTraversal();
-        tree.printLevelOrderTraversal();
+        System.out.println("---------------");
+        tree.remove(37);
+        tree.display();
 
 
         // ArrayList<Integer> intArr = new ArrayList<>();

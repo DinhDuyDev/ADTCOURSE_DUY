@@ -32,4 +32,11 @@ public class BSTNode {
     public void setRight(BSTNode r) {
         right = r;
     }
+
+    public void setValue(String v) {
+        value = v;
+    }
+    public void setKey(int k) {
+        key = k;
+    }
 }

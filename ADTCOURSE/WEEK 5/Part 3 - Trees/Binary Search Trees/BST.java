@@ -21,6 +21,7 @@ public class BST {
         ArrayList<BSTNode> arr = new ArrayList<>();
         int returnNum;
         returnNum = removeHelper(root, key, arr);
+        System.out.println(arr.toString());
         while (!arr.isEmpty()) {
             BSTNode last = arr.removeLast();
             add(last.key(), last.value());
@@ -58,6 +59,7 @@ public class BST {
             if (root.key() == key) {
                 BSTNode rootNode = root;
                 findAllDescendants(rootNode, arr);
+                System.out.println(arr.toString());
                 root = null;
                 return rootNode.value();
             }
@@ -86,6 +88,12 @@ public class BST {
 
     public void findAllDescendants(BSTNode node, ArrayList<BSTNode> arr) {
         if (node != null) {
+            if (node.left() != null) {
+                arr.add(node.left());
+            }
+            if (node.right() != null) {
+                arr.add(node.right());
+            }
             findAllDescendants(node.left(), arr);
             findAllDescendants(node.right(), arr);
         }
