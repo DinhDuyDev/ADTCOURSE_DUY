@@ -1,0 +1,33 @@
+  public static Queue<Integer> getBreadthFirstTraversal(UnweightedGraph inputGraph, Integer originVertex) {
+    Queue<Integer> traversalOrder = new LinkedList<Integer>();
+    Queue<Integer> vertexQueue = new LinkedList<Integer>();
+    Map<Integer, Boolean> visitedVertices = new HashMap<Integer, Boolean>();
+
+    //Your code here!
+    visitedVertices.put(originVertex, true);
+    traversalOrder.add(originVertex);
+    vertexQueue.add(originVertex);
+
+    while (!vertexQueue.isEmpty()) {
+      Integer frontVertex = vertexQueue.remove(); // T(n) = 1;
+      for (Integer neighbor : inputGraph.getNeighbors(frontVertex)) { // T(n) = n;
+        if (!visitedVertices.containsKey(neighbor)) { // T(n) = n;
+          visitedVertices.put(neighbor, true); // T(n) = 1;
+          traversalOrder.add(neighbor); // T(n) = 1;
+          vertexQueue.add(neighbor); // T(n) = 1;
+        }
+      }
+    }
+    return traversalOrder;
+  }
+
+
+a. Analyze the number of simple operations that are required at each step of the above algorithm and note them on your worksheet
+
+b. Some of the lines of pseudocode are hiding a fair amount of detail, such as for each neighbor of frontVertex and nextNeighbor = next neighbor of frontVertex. What assumptions are you making about the implementation details and efficiency of those lines? What could lead to those lines being more/less efficient?
+
+c. Based on your step-by-step analysis, provide a function that describes the worst-case time complexity of the algorithm using only V. This function should include the constants and coefficients.
+    + T(V) = 2v + 4;
+d. What is the Big-O time complexity of BFS in terms of V?
+    + T(V) = 2V + 4;
+e. This is actually an over-estimate for most graphs. If you were going to use E as well, how could you make your time complexity potentially more accurate for sparse graphs?

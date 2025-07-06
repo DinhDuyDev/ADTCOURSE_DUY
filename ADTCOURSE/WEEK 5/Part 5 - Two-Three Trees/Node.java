@@ -5,9 +5,6 @@ public class Node {
     private int leftKey;
     private int rightKey;
 
-    private int thirdVal;
-    private int thirdKey;
-
     private Node left;
     private Node right;
     private Node center;
@@ -78,5 +75,30 @@ public class Node {
 
     public boolean isLeaf() {
         return getCenterChild() == null && getLeftChild() == null && getRightChild() == null;
+    }
+
+    public Node add(Node it) {
+        if (rightKey == -1) { // Only one key, then add here
+            if (leftKey < it.getLeftKey()) {
+                rightKey = it.getLeftKey(); rightVal = it.getLeftVal(); // if the left key of this object is smaller than the left key of the insertion of object, then the 
+                center = it.getLeftChild(); right = it.getCenterChild(); // Center child is set to the left child of the thing 
+            } else {
+                rightKey = leftKey; rightVal = leftVal; right = center;
+                leftKey = it.getLeftKey(); leftVal = it.getLeftVal();
+                center = it.getCenterChild();
+            }
+            return this;
+        } else if (leftKey > it.getLeftKey()) { // Add to the left of the node
+            Node N1 = new Node(leftVal, leftKey, -1, -1, it, this, null);
+            it.setCenterChild(new Node(rightVal, rightKey, -1, -1, this, it.getCenterChild(), null));
+            it.setLeftChild(this);
+            rightKey = -1; rightVal = -1; right = null;
+            return it;
+        } else { // Add right
+            Node N1 = new Node(rightVal, rightKey, -1, -1, this, it, null);
+            it.setLeftChild(right);
+            right = null; rightKey = -1; rightVal = -1;
+            return N1;
+        }
     }
 }
