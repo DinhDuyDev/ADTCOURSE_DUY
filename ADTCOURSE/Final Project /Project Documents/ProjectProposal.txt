@@ -1,0 +1,65 @@
+Project Proposal: SYNDICATE
+
+I. Who’s working on the project
+    - Nguyen Dinh Duy.
+
+II. The game or simulation you plan to implement for your final project. 
+Include a brief description of the game and its rules 
+(or, for a simulation, what you aim to model and a basic overview of how it will run).
+    - The game is about creating an organization using different models that are represented by data structures. 
+    - The player will assume the role of the head of the organization. 
+    - The player can choose between different organizations types:
+        + A crew - represented by a heap.
+        + A syndicate - represented by a general tree.
+        + A cartel - represented by a linked list that contains smaller syndicates.
+        + A society - represented by a map.
+    - The player will organize their syndicate through a 2D environment, and move the coordinates of their members around.
+        + At each coordinate, the player can recruit 1 member.
+        + A member will occupy their coordinate. An enemy syndicate member can move in and "kill" the member occupying the coordinate.
+        * Specific syndicate type notes:
+            - For syndicates and cartels: if a high ranking member is killed (including the head)
+                , their entire crew / sub-syndicate will dissolve.
+            - For societies and crews: their entire population has to be killed off in order to beat them.
+                + For crews, if a boss is killed, then a member will take the boss' position.
+
+    - The player will be fighting against 3 other AIs that are also fighting against each other. The player and the AI will be hidden from each other.
+    - The more children a selected boss has, the more action points.
+    - When taking actions, you give "orders" to your subordinates (takes up an action point). You set yourself as the subordinate and control your troops through the subordinate. 
+
+
+III. How you will be using inheritance (i.e. what superclass and subclasses you will have) 
+and what other two class concepts you will use?
+    - Superclass: 
+        + Person -> General people that are controlled by the player.
+        + Organization -> General class for organizations.
+    - Subclasses:
+        + Boss extends Person -> the most important head
+        + Personnel extends Person -> any underlings of any tree.
+        + Syndicate, Crew, Cartel and Society extends Organization.
+    - Polymorphism: 
+        + Boss' move() function differs to Personnel's move() function.
+        + Overriding functions for accessing members between TreeOrganizations and the Society.
+    - Encapsulation and Abstraction:
+        + Only reveal datafields through public functions.
+
+IV. A brief development plan: what order will you implement classes and functionality and how will you test your project along the way to make sure the first things are working correctly
+    - Order of implementation: 
+        + Person object.
+        + WorldMap object.
+        + Organization.
+        + Syndicate.
+        + Crew.
+        + Cartel.
+        + Society.
+        + Computer AI.
+
+    - Testing:
+        + Testing is done through in-file main functions. We also utilize unit testing.
+
+
+A description of your primary outcome(s) for the project. I’ll raise concerns if these outcomes seem too ambitious or not ambitious enough.
+    - To be able to create a functional game that can be played against an AI.
+A description of your stretch goal(s) for the project. These are outcomes that you hope to achieve, but that you realize may be too difficult given the time frame and your current programming expertise.
+    - Add other types of organizations.
+    - Add other kinds of personnel.
+    - Create towns and establishments, which the player has to fight in order to recruit members from.

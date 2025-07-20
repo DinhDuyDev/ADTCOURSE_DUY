@@ -1,0 +1,3 @@
+How the AI will work:
++ The AI will expand outward and move randomly.
++ If the AI finds an enemy object

@@ -1,0 +1,20 @@
+TURN STARTS! 
+
+GIVE ORDER TO SUBORDINATE 1 (GIVEN 3 AP, SINCE IT HAS 2 SUBORDINATES, AND CAN RECRUIT ONE MEMBER)
+GIVE ORDER TO SUBORDINATE 2 (GIVEN 4 AP, SINCE IT HAS 3 SUBORDINATES, AND CAN RECRUIT ONE MEMBER)
+ACCEPT? YES.
+MOVE TROOP 1 VECTOR (-1, -1) (-1 AP)
+MOVE TROOP 2 VECTOR (0, 1) (-1 AP)
+MOVE TROOP 3 VECTOR (1, 0) (-1 AP)
+RECRUIT TROOP AT VECTOR (-1, -1)
+
+TURN OVER!
+
+When a turn starts, the player will have a choice to control a subordinate. 
+    This can be any subordinate in an organization, given that it is not a leaf node (personnel).
+    An exception is made for societies, where any member can be moved.
+When decided on a subordinate, the player will be given 
+    the amount of action points (the number of children) + 1 (to recruit a personnel next to the subordinate at any coordinate.)
+When all action point is used up, turn starts for the AI. Turn ends for the player.
+When the player navigates through the organization, they can navigate anywhere, but not to the boss or leaf nodes.
+If the player runs a society, then action points be dependent on the number of members in the society - 1.

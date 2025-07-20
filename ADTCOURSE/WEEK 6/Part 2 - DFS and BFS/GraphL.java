@@ -7,7 +7,6 @@ public class GraphL  {
 
     private class Edge {
         int vertex;
-        boolean VISITED;
         private Edge(int v, boolean isVisit) {
             vertex = v;
         }
@@ -115,38 +114,53 @@ public class GraphL  {
         return degrees;
     }
 
-    public Stack DFSTraversal() {
-        Stack depthTree = new Stack();
-        Stack recursionStack = new Stack();
-        boolean[] visited = new boolean[adjacencyList.size()];
-        for (int i = 0; i < adjacencyList.size(); i++) {
-            visited[i] = false;
-        }
-        int traversals = 0;
-        helpDFS(0, recursionStack, visited, depthTree, traversals);
-        return depthTree;
-    }
+    public Stack DFSTraversal(Integer startVert) {
+        Stack traversalOrder = new Stack();
+        List<Integer> recursionStack = new ArrayList<>();
+        List <Integer> visitedVertices = new ArrayList<>();
+        
+        traversalOrder.add(startVert);
+        recursionStack.add(startVert);
+        visitedVertices.add(startVert);
 
-    private void helpDFS(int startVertex, Stack stack, boolean[] visited, Stack depthTree, int traversals) {
-        visited[startVertex] = true;
-        if (!visited[startVertex]) {
-            depthTree.add(startVertex);
-        }
-        int[] neighbors = neighbors(startVertex);
-        boolean allNeighborsVisited = true;
-        for (int v : neighbors) {
-            if (!visited[v]) {
-                helpDFS(v, stack, visited, depthTree, traversals);
-                allNeighborsVisited = false;
-                stack.add(startVertex);
-                break;
+        while (!recursionStack.isEmpty()) {
+            boolean foundNeighbor = false;
+            Integer topVal = recursionStack.getLast();
+            for (Integer n : neighbors(topVal)) {
+                if (!visitedVertices.contains(n)) {
+                    visitedVertices.add(n);
+                    recursionStack.add(n);
+                    traversalOrder.add(n);
+                    foundNeighbor = true;
+                }
+            }
+            if (!foundNeighbor) {
+                recursionStack.removeLast();
             }
         }
-        if (allNeighborsVisited) {
-            int top = stack.remove();
-            helpDFS(top, stack, visited, depthTree, traversals);
-            System.out.println(top);
-        } 
+        return traversalOrder;
+    }
+
+    public Stack BFSTraversal(Integer startVert) {
+        Stack traversalOrder = new Stack();
+        List<Integer> recursionStack = new ArrayList<>();
+        List <Integer> visitedVertices = new ArrayList<>();
+
+        traversalOrder.add(startVert);
+        recursionStack.add(startVert);
+        visitedVertices.add(startVert);
+        while (!recursionStack.isEmpty()) {
+            Integer getFirst = recursionStack.removeLast();
+            for (Integer n : neighbors(getFirst)) {
+                if (!visitedVertices.contains(n)) {
+                    recursionStack.add(n);
+                    visitedVertices.add(n);
+                    traversalOrder.add(n);
+                }
+            }
+        }
+
+        return traversalOrder;
     }
 
     public static void main(String[] args) {
@@ -169,7 +183,9 @@ public class GraphL  {
         graph.addEdge(4, 5);
         graph.addEdge(2, 5);
 
-        navigationTree = graph.DFSTraversal();
+        navigationTree = graph.DFSTraversal(0);
+        navigationTree.printStack();
+        navigationTree = graph.BFSTraversal(0);
         navigationTree.printStack();
     }
 }

@@ -12,4 +12,4 @@ Example:
 + java PathFinder.java articles.tsv links.tsv Terrorism Bruce_Springsteen
 + Results: [Terrorism, 19th_century, 21st_century, U2, Bruce_Springsteen]
 
-Note: *If there is not a path, the result would be:; "There isn't a path"*
+Note: *If there is not a path, the result would be: "There isn't a path"*

@@ -1,0 +1,6 @@
+Crew: 
+    - If a boss of a crew is killed, then a member will be replaced. This essentially means that a member 
+        from a different coordinate comes back to take the boss' place at that coordinate.
+
+Cartels:
+    - If a syndicate is able to reach a boss of another organization / syndicate, then the other syndicate can be recruited.
